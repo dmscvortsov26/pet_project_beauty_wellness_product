@@ -1,0 +1,26 @@
+services:
+  api:
+    build: .
+    ports: 
+      - "8001:8000"
+    environment:
+      DB_HOST: db
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+  db: 
+      image: postgres:17
+      environment:
+        POSTGRES_DB: goldapple_pet
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      volumes:
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro # init.sql → чем первоначально наполнить новую БД
+        - db_data:/var/lib/postgresql/data # db_data → где потом постоянно хранить саму PostgreSQL-БД
+volumes:
+  db_data:
+
+
+# services: → какие контейнеры входят в наш проект
+# api: → имя одного сервиса
+# build: . → собери его image из Dockerfile в текущей папке
+# ports -> хост виндовса, и контейнера 
+# environment: → какие переменные окружения передать внутрь контейнера

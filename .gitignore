@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+.pytest_cache/
+.ipynb_checkpoints/
+*.loginit.sql
+test_playwright.py
+init.sql
+test_playwright.py
